@@ -1,0 +1,186 @@
+
+import java.awt.Color;
+import java.awt.Font;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.BorderFactory;
+import javax.swing.JApplet;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
+public class ShowAllDoctor extends JApplet {
+
+	JTable tb; 
+	JScrollPane jsp;
+	JPanel P;
+	int c= 0;
+	
+	public void init()
+	{
+		String need = "*";
+
+		Object []col = {"UserName"+need,"Password"+need,"Email"+need,"PhoneNumber"+need,"Gender"+need,"Material"+need,"DOB"+need,"Location"+need,"Address"+need,"City"+need,"State"+need,"Specilization"+need,"Qualification"+need,"Language"+need,"HospitalName"+need,"HospitalLocation"+need,"ClinicName","ClinicLocation"} ; 
+		try {
+			Class.forName("com.mysql.jdbc.Driver"); // imported external jar mysql JConnector
+				
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306","root","");
+				
+				// server and default mysql port address , username , password
+				
+				Statement stmt = con.createStatement();
+				
+				stmt.executeUpdate("create database if not exists ManagementDb");
+					stmt.execute("Use ManagementDb");
+						stmt.executeUpdate("create table if not exists  DoctorTb( username varchar(100),"
+									+ "password varchar(100),"
+									+ "email varchar(100),"
+									+ "phone varchar(100),"
+									+ "gender int,"
+									+ "material int,"
+									+ "dob date ,"
+									+ "location varchar(100),"
+									+ "address varchar(100),"
+									+ "city varchar(100),"
+									+ "state varchar(100),"
+									+ "spec varchar(100),"
+									+ "qual varchar(100),"
+									+ "lang varchar(100),"
+									+ "hname varchar(100),"
+									+ "hloc varchar(100),"
+									+ "cname varchar(100),"
+									+ "cloc varchar(100),"
+									+ "primary key(username))");
+					
+				ResultSet rs = stmt.executeQuery("select count(*) from DoctorTb");
+				rs.next();
+				
+				c = rs.getInt(1);
+				//System.out.println("Number of records: "+ c);
+		} 
+		
+		catch (SQLException e) {
+				e.printStackTrace();
+			}
+				
+		 catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		 	}
+		
+		Object [][]row = new Object[c][18];  
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver"); // imported external jar mysql JConnector
+
+
+				
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306","root","");
+				
+				// server and default mysql port address , username , password
+				
+				Statement stmt = con.createStatement();
+				
+				stmt.executeUpdate("create database if not exists ManagementDb");
+					stmt.execute("Use ManagementDb");
+					stmt.executeUpdate("create table if not exists  DoctorTb( username varchar(100),"
+							+ "password varchar(100),"
+							+ "email varchar(100),"
+							+ "phone varchar(100),"
+							+ "gender int,"
+							+ "material int,"
+							+ "dob date ,"
+							+ "location varchar(100),"
+							+ "address varchar(100),"
+							+ "city varchar(100),"
+							+ "state varchar(100),"
+							+ "spec varchar(100),"
+							+ "qual varchar(100),"
+							+ "lang varchar(100),"
+							+ "hname varchar(100),"
+							+ "hloc varchar(100),"
+							+ "cname varchar(100),"
+							+ "cloc varchar(100),"
+							+ "primary key(username))");
+					
+				ResultSet rs = stmt.executeQuery("select * from DoctorTb");
+
+				
+				
+				for(int i=0;i<c && rs.next();i++)
+				{
+					row [i][0] = rs.getString("username");
+					row[i][1] = rs.getString("password");
+					row[i][2] = rs.getString("email");
+					row[i][3] = rs.getString("phone");
+					
+					int g = rs.getInt("gender");
+					if(g==1)
+					row[i][4] = "Male";
+					else if(g==0)
+					row[i][4] = "Female";
+					
+					int m = rs.getInt("material");
+					if(m==1)
+					row[i][5] = "Single";
+					else if(m==2)
+					row[i][5] = "Married";
+						
+					row[i][6] = rs.getString("dob");
+					
+					row[i][7] = rs.getString("location");
+					row[i][8] = rs.getString("address");
+					
+					row[i][9] = rs.getString("city");
+					row[i][10] = rs.getString("state");
+					
+					row[i][11] = rs.getString("spec");
+					row[i][12] = rs.getString("qual");
+					
+					
+					row[i][13] = rs.getString("lang");
+					row[i][14] = rs.getString("hname");
+					row[i][15] = rs.getString("hloc");
+					row[i][16] = rs.getString("cname");
+					row[i][17] = rs.getString("cloc");
+				}
+				
+				con.close();
+
+		} 
+		
+		catch (SQLException e) {
+				e.printStackTrace();
+			}
+				
+		 catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		 	}
+		
+		style();
+		
+		tb = new JTable(row,col);
+		jsp = new JScrollPane(tb);
+		add(jsp);
+   
+	}
+	public void style()
+	{
+	     Font f  = new Font("comic sans",Font.ITALIC+Font.BOLD , 40); 
+	        Border raisedetched = BorderFactory.createEtchedBorder(EtchedBorder.RAISED);
+	        Border loweredetched = BorderFactory.createEtchedBorder(EtchedBorder.LOWERED);
+	        Border loweredbevel = BorderFactory.createLoweredBevelBorder();
+	        Border raisedbevel = BorderFactory.createRaisedBevelBorder();
+	        Border h = BorderFactory.createTitledBorder(loweredbevel,":: DOCTOR LOGIN ::", TitledBorder.CENTER , TitledBorder.TOP ,f,Color.red);
+	        Border k = BorderFactory.createMatteBorder(0,10,0,0,Color.red);
+	        P.setBorder(BorderFactory.createCompoundBorder(h, k));
+	}
+
+}

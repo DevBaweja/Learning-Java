@@ -1,0 +1,57 @@
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JApplet;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+
+public class CitiesAndState extends JApplet implements ItemListener{
+
+	JComboBox cbstate,cbcities;
+	
+	public void init()
+	{
+		cbstate = new JComboBox();
+ 	    cbcities = new JComboBox();
+          
+    	   try {
+				
+				
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306","root","");
+				Statement stmt = con.createStatement();
+				stmt.executeUpdate("create database if not exists state");
+				stmt.execute("Use state");
+				// table exist already
+				
+				ResultSet rs = stmt.executeQuery("select distinct city_state from cities"); 
+				
+				while(rs.next())
+				{
+					cbstate.addItem(""+rs.getString("city_state"));
+				}
+				con.close(); 
+						
+			} catch (ClassNotFoundException ae) {
+				// TODO Auto-generated catch block
+				ae.printStackTrace();
+			} catch (SQLException ae) {
+				// TODO Auto-generated catch block
+				ae.printStackTrace();
+			}
+
+    	   add(cbstate);
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}

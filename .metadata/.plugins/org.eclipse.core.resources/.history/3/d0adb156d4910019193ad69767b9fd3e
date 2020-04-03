@@ -1,0 +1,503 @@
+
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JApplet;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+public class DoctorID1 extends JDialog implements ActionListener,ItemListener,FocusListener{
+              
+              JLabel lbuser,lbpass,lbhead;
+              JLabel lbgender,lbdob,lbaddress;
+              JLabel lbmobile,lbconfirmpass;
+              JLabel lbemail,lbMaterialstatus,lblocation;
+              JLabel lbcity,lbstate;
+              JLabel lbspecilization,lbqualification,lblanguage;
+              JLabel lbHospitalName,lbHospitalLocation,lbclinicname,lbcliniclocation;
+              JButton btregister,btrefresh,btclose;
+              JTextField txuser,txmobile,txemail,txlocation;
+              JTextField txcity,txstate;
+              JTextField txspecilization,txqualification,txHospitalName,txHospitalLocation,txclinicname,txcliniclocation;
+              JTextArea taddress;
+              JPasswordField txpass,txconfirmpass;
+              JPanel P,Phead,Pgender,Pdob,Pbutton1,Pbutton2,PLang,Phos,Phosl,Pclinic,Pclinicl;
+              JPanel Pemail,PMaterial,Plocation,Pcity,Pstate;
+              JRadioButton ckmale,ckfemale,ckhidden;
+              JCheckBox chenglish,chhindi,chothers;
+              ButtonGroup gr;
+              JComboBox chyy,chmm,chdd;
+              JComboBox cMs;
+              CardLayout CLO;
+              JScrollPane jsp;
+                           
+             public DoctorID1()
+              {
+                           
+                           setVisible(true);
+                           setSize(800,800);
+
+                           lbhead = new JLabel("Doctor SignUp");
+                           lbuser = new JLabel("User Name");
+                           lbpass = new JLabel("New Password");
+                           lbconfirmpass = new JLabel("Confirm New Password");
+                           lbemail = new JLabel("Email ID");
+                           lbMaterialstatus= new JLabel("Material Status");
+                           lblocation= new JLabel("Location");
+                           lbcity= new JLabel("City");
+                           lbstate=new JLabel("State");
+                           lbgender = new JLabel("Gender");
+                           
+                          
+                           lbspecilization = new JLabel("Specilization");
+                           lbqualification = new JLabel("Qualification");
+                           lblanguage = new JLabel("language");
+                           
+                           lbHospitalName = new JLabel("Hospital Name");
+                           lbHospitalLocation = new JLabel("Hospital Location");
+                           lbclinicname = new JLabel("Clinic Name");
+                           lbcliniclocation = new JLabel("Clinic Location");
+                           
+                            gr = new ButtonGroup();
+                           ckmale = new JRadioButton("Male");
+                           ckfemale = new JRadioButton("Female");
+                           ckhidden = new JRadioButton("Hidden"); // dont add this
+                           
+                           gr.add(ckmale);
+                           gr.add(ckfemale);
+                           gr.add(ckhidden);
+                           
+                           chenglish = new JCheckBox("English");
+                           chhindi = new JCheckBox("Hindi");
+                           chothers = new JCheckBox("Others"); // dont add this
+                           
+                           lbdob =  new JLabel("DOB");
+                           
+                           chyy = new JComboBox();
+                           chmm = new JComboBox();
+                           chdd = new JComboBox();
+                           
+                           cMs=new JComboBox();
+                           cMs.addItem("Select status");
+                           cMs.addItem("Single");
+                           cMs.addItem("Married");
+                           
+                           lbaddress = new JLabel("Address");
+                           lbmobile = new JLabel("Personal Number");
+                           
+                           btregister = new JButton("Register");
+                           btrefresh= new JButton("Refresh");
+                           btclose = new JButton("Close");
+                           
+                           txuser = new JTextField();   
+                           txpass = new JPasswordField();
+                           txpass.setEchoChar('*');
+                           txconfirmpass = new JPasswordField();
+                           txconfirmpass.setEnabled(false);
+                           txconfirmpass.setEchoChar('*');
+                           txmobile = new JTextField(); 
+                           txemail = new JTextField("Example123@gmail.com");
+                           txlocation= new JTextField();
+                           txcity= new JTextField();
+                           txstate= new JTextField();
+                           taddress = new JTextArea();
+                           txspecilization= new JTextField();
+                           txqualification= new JTextField();
+                           txHospitalName= new JTextField();
+                           txHospitalLocation= new JTextField();
+                           txclinicname= new JTextField();
+                           txcliniclocation= new JTextField();
+         
+                           
+              
+                           print();
+                           
+                           
+                           chyy.addItemListener(this);
+                           chmm.addItemListener(this);
+                           
+                           btregister.addActionListener(this);
+                           btrefresh.addActionListener(this);
+                           btclose.addActionListener(this);
+                           
+                           txpass.addFocusListener(this);
+                           txconfirmpass.addFocusListener(this);
+                           
+                          
+              }
+              
+              public void print()
+              {
+                           chyy.addItem("Year");
+                           for(int i=1981;i<=2000;i++)
+                           chyy.addItem(i+"");
+                           
+                           chmm.addItem("Month");
+                           for(int i=1;i<=12;i++)
+                                         chmm.addItem(i+"");
+                           
+                           chdd.addItem("Date");
+                           
+                           // according to month and year date must change
+              
+                           
+                           Phead = new JPanel();
+                           Phead.add(lbhead);
+                           
+                           Pgender = new JPanel();
+                           Pgender.setLayout(new GridLayout(1, 2));
+                           Pdob = new JPanel();
+                           Pdob.setLayout(new GridLayout(1, 3));
+                           Pbutton1 = new JPanel();
+                           Pbutton1.setLayout(new GridLayout(1,1));
+                           Pbutton2 = new JPanel();
+                           Pbutton2.setLayout(new GridLayout(1, 2));
+                           
+                           Pgender.add(ckmale);
+                           Pgender.add(ckfemale);
+                           // dont add this hidden check box
+                           
+                           PLang = new JPanel();
+                           PLang.setLayout(new GridLayout(1, 3));
+                           PLang.add(chenglish);
+                           PLang.add(chhindi);
+                           PLang.add(chothers);
+                           
+                           Pdob.add(chyy);
+                           Pdob.add(chmm);
+                           Pdob.add(chdd);
+                           
+                           
+                           Pbutton1.add(btregister);
+                           Pbutton2.add(btrefresh);
+                           Pbutton2.add(btclose);
+              
+                           
+                           Pcity = new JPanel();
+                           Pcity.setLayout(new GridLayout(1,2));
+                           Pcity.add(lbcity);
+                           Pcity.add(txcity);
+                           
+                           Pstate = new JPanel();
+                           Pstate.setLayout(new GridLayout(1,2));
+                           Pstate.add(lbstate);
+                           Pstate.add(txstate);
+                           
+                           Phos = new JPanel();
+                           Phos.setLayout(new GridLayout(1,2));
+                           Phos.add(lbHospitalName);
+                           Phos.add(txHospitalName);
+                           
+                           Phosl = new JPanel();
+                           Phosl.setLayout(new GridLayout(1,2));
+                           Phosl.add(lbHospitalLocation);
+                           Phosl.add(txHospitalLocation);
+                          
+                           Pclinic = new JPanel();
+                           Pclinic.setLayout(new GridLayout(1,2));
+                           Pclinic.add(lbclinicname);
+                           Pclinic.add(txclinicname);
+                           
+                           Pclinicl = new JPanel();
+                           Pclinicl.setLayout(new GridLayout(1,2));
+                           Pclinicl.add(lbcliniclocation);
+                           Pclinicl.add(txcliniclocation);
+                          
+                           P = new JPanel();
+                           P.setLayout(new GridLayout(17,2));
+                           P.add(lbuser);
+                           P.add(txuser);
+                           P.add(lbpass);
+                           P.add(txpass);
+                           P.add(lbconfirmpass);
+                           P.add(txconfirmpass);
+                           P.add(lbemail);
+                           P.add(txemail);
+                           P.add(lbmobile);
+                           P.add(txmobile);
+                           P.add(lbgender);
+                           P.add(Pgender);
+                           P.add(lbMaterialstatus);
+                           P.add(cMs);
+                           P.add(lbdob);
+                           P.add(Pdob);
+                           P.add(lblocation);
+                           P.add(txlocation);
+                           P.add(lbaddress);
+                           P.add(taddress);
+                           P.add(Pcity);
+                           P.add(Pstate);
+                           P.add(lbspecilization);
+                           P.add(txspecilization);
+                           P.add(lbqualification);
+                           P.add(txqualification);
+                           P.add(lblanguage);
+                           P.add(PLang);
+                           P.add(Phos);
+                           P.add(Phosl);
+                           P.add(Pclinic);
+                           P.add(Pclinicl);
+                           P.add(Pbutton1);
+                           P.add(Pbutton2);
+                           
+                           
+                           jsp = new JScrollPane(P);
+                           add(jsp,BorderLayout.CENTER); // default of JApplet
+                           
+                           add(Phead,BorderLayout.NORTH);
+              
+              }
+
+              @Override
+              public void itemStateChanged(ItemEvent ie) {
+                           
+                           
+                           // Object src = ie.getSource();
+                           
+                           
+              // yymmdd 
+                            if(chyy.getSelectedIndex() != 0 && chmm.getSelectedIndex() != 0)
+                           {
+                           
+                                         
+                            int yy = Integer.parseInt( chyy.getSelectedItem().toString() );
+                           int mm = Integer.parseInt( chmm.getSelectedItem().toString() );
+                           
+                            // every time it come here we will remove previous entered item 
+                            // and then it will add automatically
+                           
+                            //  for(int i=1;i<chdd.getItemCount();i++)
+                           // chdd.remove(1);
+                                         
+                           chdd.removeAllItems();
+                           chdd.addItem("Date");
+                           
+                            int days = 0;
+                           
+                            if(mm == 2)
+                                         {
+                                         if(yy%4 ==0)
+                                         
+                                                        days = 29;
+                                         else
+                                                       days = 28;
+                                         }
+                           else 
+                                                      { 
+                                                                    if(mm == 4 || mm == 6 || mm == 9 || mm == 11)
+                                                                                 days = 30;
+                                                                   else 
+                                                                                  days = 31;
+                                                     }
+              
+                                         for(int i=1 ; i<=days ;i++)
+                                                       chdd.addItem(i+"");
+              
+                           }
+
+}
+
+              @Override
+              public void actionPerformed(ActionEvent ae) {
+                           
+                           Object src = ae.getSource();
+                           // in refresh radio JButton will remain as it
+                           // making hidden radio JButton
+                           
+                           if(src == btregister)
+                           {
+                                         int a= txpass.getText().compareTo( txconfirmpass.getText());
+                                         if(a!=0)
+                                         {
+                                                       JOptionPane.showMessageDialog(null, "Passwords Must be Same");
+                                         }
+                                         //else
+                                         //d = new BackToMain(this);
+                                         
+                                   	   try {
+             								
+             								
+             								Class.forName("com.mysql.jdbc.Driver");
+             								Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306","root","");
+             								Statement stmt = con.createStatement();
+             								stmt.executeUpdate("create database if not exists ManagetDb");
+             								stmt.execute("Use ManageDb");
+             								stmt.executeUpdate("create table if not exists  DoctorTb( username varchar(100),"
+             										+ "password varchar(100),"
+             										+ "email varchar(100),"
+             										+ "phone varchar(100),"
+             										+ "gender int,"
+             										+ "material int,"
+             										+ "dob date ,"
+             										+ "location varchar(100),"
+             										+ "address varchar(100),"
+             										+ "city varchar(100),"
+             										+ "state varchar(100),"
+             										+ "spec varchar(100),"
+             										+ "qual varchar(100),"
+             										+ "lang varchar(100),"
+             										+ "hname varchar(100),"
+             										+ "hloc varchar(100),"
+             										+ "cname varchar(100),"
+             										+ "cloc varchar(100)"
+             										+ "primary key(username))");
+             								
+             								PreparedStatement pre = con.prepareStatement("insert into DoctorTb (username,password,email,phone,gender,material,dob,location,address,city,state,spec,qual,lang,hname,hloc,cname,cloc) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+             				
+             								pre.setString(1,txuser.getText());
+             								pre.setString(2, txpass.getText());
+             								pre.setString(3, txemail.getText());
+             								pre.setString(4, txmobile.getText());
+             								
+             								if(ckmale.isSelected())
+             								pre.setInt(5,0);
+             								else 
+             								if(ckfemale.isSelected())
+             								pre.setInt(5,1);
+             								// 0 for female
+             								// 1 for male
+             				
+             								pre.setInt(6,cMs.getSelectedIndex());
+             								// 1 for single
+             								// 2 for married
+             								
+             								int yy = Integer.parseInt(chyy.getSelectedItem().toString());
+             								int mm = Integer.parseInt(chmm.getSelectedItem().toString());
+             								int dd = Integer.parseInt(chdd.getSelectedItem().toString());
+             								Date dob = new Date(yy-1900, mm-1 , dd);
+             										/*
+             										 * year the year minus 1900; must be 0 to 8099. (Note that8099 is 9999 minus 1900.)
+             										 * month 0 to 11
+             										 * day 1 to 31
+             										 */
+             								
+             								pre.setDate(7, dob);
+             						
+             								pre.setString(8, txlocation.getText());
+             								pre.setString(9, taddress.getText());
+             								pre.setString(10, txcity.getText());
+             								pre.setString(11, txstate.getText());
+             								
+             								pre.setString(12, txspecilization.getText());
+             								pre.setString(13, txqualification.getText());
+             								
+             								
+             								String lan ="";
+             								if(chenglish.isSelected())
+             									lan += "E";
+             								if(chhindi.isSelected())
+             									lan += "H";
+             								if(chothers.isSelected())
+             									lan += "O";
+       
+             								pre.setString(14,lan);
+                     						
+             								pre.setString(15, txHospitalName.getText());
+             								pre.setString(16, txHospitalLocation.getText());
+             								pre.setString(17, txclinicname.getText());
+             								pre.setString(18, txcliniclocation.getText());
+             								
+             								pre.executeUpdate();
+             								System.out.println("Insertion Sucessfully");
+             								
+             								con.close();
+             							} catch (ClassNotFoundException e) {
+             								// TODO Auto-generated catch block
+             								e.printStackTrace();
+             							} catch (SQLException e) {
+             								// TODO Auto-generated catch block
+             								e.printStackTrace();
+             							}
+                           }
+                           else if(src == btrefresh)
+                           {
+                                         txuser.setText("");
+                                         txpass.setText("");
+                                         
+                                         //Radio JButton
+                                         ckhidden.setSelected(true);
+                                         // if it is true then other will automatically will get off
+                                         
+                                         chyy.setSelectedIndex(0);
+                                         chmm.setSelectedIndex(0);
+                                         chdd.setSelectedIndex(0);
+                                         taddress.setText("");
+                                         txconfirmpass.setText("");
+                                         
+                                         txmobile.setText("");
+                                         txcity.setText("");
+                                         txstate.setText("");
+                                         txlocation.setText("");
+                                         txemail.setText("");
+                                         cMs.setSelectedIndex(0);
+                                         txspecilization.setText("");
+                                         txqualification.setText("");
+                                         txHospitalName.setText("");
+                                         txHospitalLocation.setText("");
+                                         txclinicname.setText("");
+                                         txcliniclocation.setText("");
+                                         chenglish.setSelected(false);
+                                         chhindi.setSelected(false);
+                                         chothers.setSelected(false);
+                                         
+                           }
+	}
+              @Override
+              public void focusGained(FocusEvent e) {
+                           
+                           Object src = e.getSource();
+                           
+                           if(src == txpass)
+                           {
+                            txconfirmpass.setEnabled(true);
+                           }
+                           else if(src == txconfirmpass)
+                           {
+                        	   txconfirmpass.setText(txpass.getText());
+                           }
+              }
+
+              @Override
+              public void focusLost(FocusEvent e) {
+                           Object src = e.getSource();
+                           
+                           if( src == txconfirmpass )
+                           {
+                            int b = (txpass.getText()).compareTo( txconfirmpass.getText());
+                            // b will be zero if they are same
+                            if( b != 0 )
+                            {
+                           	 JOptionPane.showMessageDialog(null, "Both Passwords Must Be Same","Incorrect Password",JOptionPane.ERROR_MESSAGE);
+                            	txconfirmpass.requestFocus();
+                            }
+                           } 
+              }
+
+                            
+}
+
+
+

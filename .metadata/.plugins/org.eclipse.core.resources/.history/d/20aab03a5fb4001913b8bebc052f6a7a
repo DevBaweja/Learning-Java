@@ -1,0 +1,22 @@
+
+public class Constructors {
+
+	public static void main(String[] args) {
+		// s is String Class Object
+		String s = new String();
+		// Default Constructor
+		System.out.println(s);
+		
+		s = new String("Fill");
+		// Parametric Constructor
+		System.out.println(s);
+		
+		char c[] = {'a','b','c','d','e','f'};
+		s = new String(c);
+		System.out.println(s);
+		
+		s = new String(char[] value,int offset,int count)
+		s = new String(c,2,2);
+		System.out.println(s);
+	}
+}

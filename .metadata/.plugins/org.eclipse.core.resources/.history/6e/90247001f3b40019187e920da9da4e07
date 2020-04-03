@@ -1,0 +1,7 @@
+package String;
+
+public class StringClass{
+
+	// public final class String extends Object	implements Serializable, Comparable<String>, CharSequence
+	// The java.lang.String class
+}

@@ -1,0 +1,27 @@
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+import javax.swing.JTabbedPane;
+
+public class UserTabbedBar extends JFrame {
+
+	static String user;
+	JTabbedPane jtb;
+
+	public UserTabbedBar() {
+
+		user = LoginUser.user;
+		// user = "dev";
+		
+		setPreferredSize(new Dimension(1000, 1000));
+		setSize(new Dimension(1000, 1000));
+		setVisible(true);
+
+		jtb = new JTabbedPane();
+		jtb.addTab("User Home", new UserHome());
+		
+		add(jtp)
+		validate();
+		revalidate();
+	}
+}

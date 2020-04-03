@@ -1,0 +1,29 @@
+package String;
+
+public class charAt {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		// it is an non-static method
+		// charAt(int index) : char
+		
+		String a = "Pool";
+		String b = new String("Instance");
+		
+		System.out.println(a.charAt(0));
+	
+		
+		try {
+			//  Should be less than String.length()
+			// Should be positive
+			System.out.println(a.charAt(-1));
+			// run time error java.lang.StringIndexOutOfBoundsException
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
+	}
+
+}

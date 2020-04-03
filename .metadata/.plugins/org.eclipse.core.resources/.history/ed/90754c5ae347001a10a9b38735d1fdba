@@ -1,0 +1,368 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+
+@SuppressWarnings("serial")
+class Chess extends JFrame implements ActionListener {
+
+	int rows,cols;
+	GridLayout g;
+	int width,height;
+	JButton[][] grid;
+	Piece[][] pieces;
+	int turn;
+	public Chess()
+	{
+		setVisible(true); // for visibility
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); // for closing
+		setLocationRelativeTo(this); // center of window
+		setTitle("Chess Game"); // for title
+		width = 800;
+		height = 800;
+		setSize(width,height);
+		//setSize(new Dimension(width, height));
+		//setPreferredSize(new Dimension(width, height));
+		
+		setResizable(false); // for no resize
+		rows = 8;
+		cols = 8;
+		g = new GridLayout(rows,cols);
+		setLayout(g);
+		
+		setBackground(Color.WHITE);
+		grid = new JButton[rows][cols];
+		pieces = new Piece[rows][cols];
+		createGrid();
+		addGrid();
+		addListener();
+	
+		setup();
+		validate();
+		//revalidate();
+	}
+	
+	private void setup() {
+		// TODO Auto-generated method stub
+		
+		// Filling up occupied spaces
+		int i;
+		i=0;
+		do {
+			for(int j=0;j<cols;j++)
+				{
+					pieces[i][j].setAlive(true);
+					pieces[i][j].setType(-1);
+				}
+		i++;
+		}while(i<=1);
+		
+		i=cols-1;
+		do {
+			for(int j=0;j<cols;j++)
+				{
+					pieces[i][j].setAlive(true);
+					pieces[i][j].setType(1);
+				}
+		i--;
+		}while(i>=cols-2);
+		
+		// Creating pawns
+		createPawn();
+		// Creating Minor
+		createMinor();
+		// Creating Major
+		createMajor();
+		turn = -1;
+	}
+
+	private void createMajor() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void makeRook(int i,int j)
+	{
+		pieces[i][j].setParameter("Rook", false,false,true,false,false);
+		grid[i][j].setText(pieces[i][j].getName());
+	}
+	private void makeBishop(int i,int j)
+	{
+		pieces[i][j].setParameter("Bishop", false,false,false,true,false);
+		grid[i][j].setText(pieces[i][j].getName());
+	}
+	private void makeKnight(int i,int j)
+	{
+		pieces[i][j].setParameter("Rook", false,false,false,false,true);
+		grid[i][j].setText(pieces[i][j].getName());
+	}
+	private void makeKing(int i,int j)
+	{
+		pieces[i][j].setParameter("King",true,false,false,false,false);
+		grid[i][j].setText(pieces[i][j].getName());
+	}
+	private void makePawn(int i,int j)
+	{
+		pieces[i][j].setParameter("Pawn",false,false,false,true,false);
+		grid[i][j].setText(pieces[i][j].getName());
+	}
+	private void makeQueen(int i,int j)
+	{
+		pieces[i][j].setParameter("Queen",false,false,true,true,false);
+		grid[i][j].setText(pieces[i][j].getName());
+	}
+	
+	private void createMinor() {
+		// TODO Auto-generated method stub
+		// For Rook,Bishop,Knight
+		int i,j;
+		i=0;
+	
+		// Black
+		j=0;makeRook(i,j);
+		j++;makeKnight(i,j);
+		j++;makeBishop(i,j);
+		j++;makeQueen(i,j);
+		
+		// Black
+		j=cols-1;makeRook(3,3);
+		pieces[3][3].setType(-1);
+		j--;makeKnight(i,j);
+		j--;makeBishop(i,j);
+		j--;makeKing(i,j);
+		
+		i=rows-1;
+		
+		// White
+//		j=0;makeRook(i,j);
+//		j++;makeKnight(i,j);
+//		j++;makeBishop(i,j);
+//		j++;makeQueen(i,j);
+		
+		// White
+//		j=cols-1;makeRook(3,3);
+//		pieces[3][3].setType(1);
+//		j--;makeKnight(i,j);
+//		j--;makeBishop(i,j);
+//		j--;makeKing(i,j);
+		
+		pieces[0][3].setType(0);
+	}
+
+	private void createPawn() {
+		// TODO Auto-generated method stub
+		int i;
+		i=1;
+		// Black
+		for(int j=0;j<cols;j++)
+			makePawn(i,j);
+		// White
+//		i=6;
+//		for(int j=0;j<cols;j++)
+//			makePawn(i,j);
+	}
+
+	private void createGrid() {
+		// TODO Auto-generated method stub
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				grid[i][j] = new JButton();
+				pieces[i][j] = new Piece();
+			}
+		}
+	}
+
+	private void addGrid() {
+		// TODO Auto-generated method stub
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				if((i+j)%2==0)
+					grid[i][j].setBackground(Color.WHITE);
+				else
+					grid[i][j].setBackground(Color.BLACK);
+				
+				 //grid[i][j].setFocusPainted(false);
+				 //grid[i][j].setBorderPainted(false);
+				 add(grid[i][j]);
+			}
+		}
+	}
+
+	
+	public void paint(Graphics g)
+	{
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		Object obj = e.getSource();
+		removeListener();
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				if(obj==grid[i][j])
+				{
+					System.out.println(pieces[i][j].getType());
+					System.out.println(pieces[i][j].getName());
+					
+					if(pieces[i][j].line)
+					{
+						Piece p = new Piece(pieces[i][j]);
+						if(p.getType()==turn)
+						{
+							int tempi,tempj;
+							tempi = i;tempj = j;
+							System.out.println("Go");
+							while(isValid(tempi,tempj))
+							{
+								if(pieces[tempi][tempj].getOppType()==turn)
+								 	{
+										grid[tempi][tempj].setBackground(Color.red);
+										break;
+								 	}
+								if (pieces[tempi][tempj].getType()!=turn)
+								{
+									grid[tempi][tempj].setBackground(Color.green);
+								}
+								tempi--;
+							}
+							
+							tempi = i;tempj = j;
+							while(isValid(tempi,tempj))
+							{
+								if(pieces[tempi][tempj].getOppType()==turn)
+								 	{
+										grid[tempi][tempj].setBackground(Color.red);
+										break;
+								 	}
+								if(pieces[tempi][tempj].getType()!=turn)
+								{
+									grid[tempi][tempj].setBackground(Color.green);
+								}
+								tempi++;
+							}
+							
+							tempi = i;tempj = j;
+							while(isValid(tempi,tempj))
+							{
+								if(pieces[tempi][tempj].getOppType()==turn)
+								 	{
+										grid[tempi][tempj].setBackground(Color.red);
+										break;
+								 	}
+								if(pieces[tempi][tempj].getType()!=turn)
+								{
+									grid[tempi][tempj].setBackground(Color.green);
+								}
+								tempj--;
+							}
+							
+							tempi = i;tempj = j;
+							while(isValid(tempi,tempj))
+							{
+								if(pieces[tempi][tempj].getType()==0)
+									grid[tempi][tempj].setBackground(Color.green);
+								else
+								{
+									if(pieces[tempi][tempj].getOppType()==turn)
+										grid[tempi][tempj].setBackground(Color.red);
+										
+									break;
+								}
+								
+								if(pieces[tempi][tempj].getOppType()==turn)
+								 	{
+										grid[tempi][tempj].setBackground(Color.red);
+										break;
+								 	}
+								if(pieces[tempi][tempj].getType()!=turn)
+								{
+									grid[tempi][tempj].setBackground(Color.green);
+								}
+								tempj++;
+							}
+						}
+						
+						
+					}
+//					if(pieces[i][j].diagonal)
+//					{
+//						
+//					}
+//					if(pieces[i][j].unusual)
+//					{
+//						
+//					}
+//					if(pieces[i][j].forward)
+//					{
+//						
+//					}
+//					if(pieces[i][j].onestep)
+//					{
+//						
+//					}
+				}
+			}
+		}
+		addListener();
+	}
+
+	private void addListener() {
+		// TODO Auto-generated method stub
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				grid[i][j].addActionListener(this);
+			}
+		}
+	}
+
+	private void removeListener() {
+		// TODO Auto-generated method stub
+		for(int i=0;i<rows;i++)
+		{
+			for(int j=0;j<cols;j++)
+			{
+				grid[i][j].removeActionListener(this);
+			}
+		}
+	}
+
+	private boolean isValid(int i, int j) {
+		// TODO Auto-generated method stub
+		//System.out.println(i+","+j);
+		if(i<0 || j<0 || i>rows-1 || j>cols-1)
+			return false;
+		
+		return true;
+	}
+}
+
+public class DemoMain
+{
+	public static void main(String[] args)
+	{
+		new Chess();	
+	}
+}
+/*
+ImageIcon icon = new ImageIcon("image.jpg");
+Image img = icon.getImage();
+Image newimg = img.getScaledInstance(100, 100, java.awt.Image.SCALE_SMOOTH);
+grid[i][j].setIcon(new ImageIcon(newimg));
+
+setRolloverIcon
+setDisabledIcon
+setSelectedIcon
+setEnabled
+setSelected
+
+*/

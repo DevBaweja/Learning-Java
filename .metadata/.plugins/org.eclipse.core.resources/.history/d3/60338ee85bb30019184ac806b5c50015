@@ -1,0 +1,13 @@
+
+
+public class Basic {
+	
+	public static void main(String[] args)
+	{
+		String s = "fill";
+		System.out.println(s.charAt(0));
+		
+		System.out.println(Integer.max(10, 20));
+		Scanner
+	}
+}

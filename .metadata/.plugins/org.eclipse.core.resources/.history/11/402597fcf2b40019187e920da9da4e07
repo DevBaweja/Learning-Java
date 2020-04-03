@@ -1,0 +1,6 @@
+package String;
+
+public class StringClass{
+
+	// The java.lang.String class implements Serializable, Comparable and CharSequence interfaces.
+}

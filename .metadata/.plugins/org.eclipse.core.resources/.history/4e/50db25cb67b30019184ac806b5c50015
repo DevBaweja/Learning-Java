@@ -1,0 +1,13 @@
+import java.util.Scanner;
+
+public class DemoBasic {
+
+	public static void main(String[] args)
+	{
+		Integer i = new Integer("f");
+		System.out.println(i.getClass());
+		Scanner sc = new Scanner(System.in);
+		System.out.println(sc.getClass());
+		System.out.println(i);
+	}
+}

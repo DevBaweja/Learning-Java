@@ -1,0 +1,54 @@
+package Interface;
+
+
+public class InterfaceExtends 
+{
+    public static void main (String[] args) 
+    {
+        IC objc = new IC();
+        objc.show();
+        objc.display();
+        
+        System.out.println();
+        
+        IB objb = new IC();
+        // IB ref will contain both methods 
+        objb.show();
+        objb.display();
+        
+        System.out.println();
+        
+        IA obja = new IC();
+        // IA ref will contain only one defined method
+        obja.show();
+      //  obja.display();
+        
+    }
+}
+
+interface IA {
+    public void show();
+}
+// interface can only be implements by class or abstract class as it requires to declare methods in class 
+// interface cannot be implements by interface as it will not be able to declared method in it
+
+// interface cannot by extends by class or abstract class
+// here twist is interface can be extends by interface 
+
+
+interface IB extends IA {
+    public void display();
+}
+
+class IC implements IB 
+{
+    public void show()
+    {
+        System.out.println("Show");
+    }
+    public void display()
+    {
+        System.out.println("Display");
+    }
+}
+

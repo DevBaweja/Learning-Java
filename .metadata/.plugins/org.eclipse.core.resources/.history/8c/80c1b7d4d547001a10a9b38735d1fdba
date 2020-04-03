@@ -1,0 +1,66 @@
+
+public class Piece {
+
+	String name;
+	boolean onestep; // For King
+	boolean forward; // For Pawn
+	boolean line; // For Rook
+	boolean diagonal; // For Bishop
+	boolean unusual; // For Knight
+	// For Queen - line,diagonal
+	boolean alive;
+	int type; // white or black
+
+	public Piece()
+	{
+		name = "null";
+		// row and col does not exists
+		alive = false;
+		type = 0;
+	}
+	
+	void reset()
+	{
+		name = "null";
+		// row and col does not exists
+		onestep = forward = line = diagonal = unusual = false;
+		alive = false;
+		type = 0;
+	}
+	
+	void setAlive(boolean alive)
+	{
+		this.alive = alive;
+	}
+	
+	void setType(int type)
+	{
+		this.type = type;
+	}
+	
+	String getName()
+	{
+		return name;
+	}
+	
+	int getType()
+	{
+		return type;
+	}
+	
+	void setParameter(String name,boolean onestep,boolean forward,boolean line,boolean diagonal,boolean unusual)
+	{
+		this.onestep = onestep;
+		this.forward = forward;
+		this.name = name;
+		this.line = line;
+		this.diagonal = diagonal;
+		this.unusual = unusual;
+		// Rook false,false,true,false,false,false
+		// Bishop false,false,false,true,false
+		// Knight false,false,false,false,true
+		// King false,false,false,true,false
+		// Queen true,true,false,false,false
+		// Pawn false,false,false,true
+	}
+}

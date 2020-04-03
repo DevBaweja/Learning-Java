@@ -1,0 +1,15 @@
+package pack1;
+
+public class Sub extends Fun{
+	
+	void display()
+	{
+		super.pub_fun();
+		super.pro_fun();
+		super.fri_fun();
+		 // no need to add super
+		 // super.pri_fun();	
+	}
+	
+
+}

@@ -1,0 +1,104 @@
+package Frame;
+
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+public class MyNotepad extends Frame implements WindowListener{
+	
+	MenuBar MB; 
+	
+	// Like button
+	Menu MFile,MEdit,MHelp; 
+	
+	// Like button
+	MenuItem MINew,MIOpen,MISave,MISaveAs,MISaveAll,MIPrint,MIImport,MIExport,MIQuit; // for Mfile Menu 
+	
+	
+	
+	public MyNotepad()
+	{
+		setVisible(true);
+		setSize(400, 400);
+		setLayout(new FlowLayout());
+		
+		// Menu items for menu file
+		MINew = new MenuItem("New"); 
+		MIOpen = new MenuItem("Open"); 
+		MISave = new MenuItem("Save");
+		MISaveAs = new MenuItem("Save As");
+		MISaveAll = new MenuItem("Save All");
+		MIPrint = new MenuItem("Print");
+		MIImport = new MenuItem("Import");
+		MIExport = new MenuItem("Export");
+		MIQuit = new MenuItem("Quit");
+
+		// Menu items for menu edit
+		// Menu items for menu help
+		MFile = new Menu("File");
+		MEdit = new Menu("Edit");
+		MHelp = new Menu("Help");
+		
+		
+		MFile.add(MINew);
+		MFile.add(MIOpen);
+		MFile.addSeparator(); // adding line
+		MFile.add(MISave);
+		MFile.add(MISaveAs);
+		MFile.addSeparator();
+		MFile.add(MIQuit);
+		
+		
+		MB = new MenuBar();
+		MB.add(MFile);
+		MB.add(MEdit);
+		MB.add(MHelp);
+		
+		
+		setMenuBar(MB);
+		
+		this.addWindowListener(this);
+	}
+	
+	
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		System.exit(-1);
+		
+	}
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+}

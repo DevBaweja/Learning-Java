@@ -1,0 +1,16 @@
+package Frame;
+
+import java.applet.Applet;
+
+public class DemoMyNotepad {
+
+	public static void main(String[] args)
+	{
+		new MyNotepad();
+	}
+	public void init() {
+		// TODO Auto-generated method stub
+
+	}
+
+}

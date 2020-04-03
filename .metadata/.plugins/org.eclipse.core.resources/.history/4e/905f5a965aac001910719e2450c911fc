@@ -1,0 +1,28 @@
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.*;
+
+public class UserHome extends JPanel {
+	JLabel lbname;
+	String user;
+
+	public UserHome() {
+		
+		user = LoginUser.user;
+		setPreferredSize(new Dimension(1000, 1000));
+		setSize(new Dimension(1000, 1000));
+		setVisible(true);
+		
+		name = JLabel("Welcome user "+);
+	}
+}

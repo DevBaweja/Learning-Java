@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+    <libraryInfo home="F:\Java JDK\Old Version\jdk8u212" version="1.8.0_212">
+        <bootpath>
+            <entry path="F:\Java JDK\Old Version\jdk8u212\jre\lib\resources.jar"/>
+            <entry path="F:\Java JDK\Old Version\jdk8u212\jre\lib\rt.jar"/>
+            <entry path="F:\Java JDK\Old Version\jdk8u212\jre\lib\sunrsasign.jar"/>
+            <entry path="F:\Java JDK\Old Version\jdk8u212\jre\lib\jsse.jar"/>
+            <entry path="F:\Java JDK\Old Version\jdk8u212\jre\lib\jce.jar"/>
+            <entry path="F:\Java JDK\Old Version\jdk8u212\jre\lib\charsets.jar"/>
+            <entry path="F:\Java JDK\Old Version\jdk8u212\jre\lib\jfr.jar"/>
+            <entry path="F:\Java JDK\Old Version\jdk8u212\jre\classes"/>
+        </bootpath>
+        <extensionDirs>
+            <entry path="F:\Java JDK\Old Version\jdk8u212\jre\lib\ext"/>
+            <entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+        </extensionDirs>
+        <endorsedDirs>
+            <entry path="F:\Java JDK\Old Version\jdk8u212\jre\lib\endorsed"/>
+        </endorsedDirs>
+    </libraryInfo>
+    <libraryInfo home="F:\Java JDK\New Version\JDK-12" version="12.0.1"/>
+    <libraryInfo home="C:\Users\Lenovo\Desktop\Sublime Text\Workspace\jdk8u212" version="1.8.0_212">
+        <bootpath>
+            <entry path="C:\Users\Lenovo\Desktop\Sublime Text\Workspace\jdk8u212\jre\lib\resources.jar"/>
+            <entry path="C:\Users\Lenovo\Desktop\Sublime Text\Workspace\jdk8u212\jre\lib\rt.jar"/>
+            <entry path="C:\Users\Lenovo\Desktop\Sublime Text\Workspace\jdk8u212\jre\lib\sunrsasign.jar"/>
+            <entry path="C:\Users\Lenovo\Desktop\Sublime Text\Workspace\jdk8u212\jre\lib\jsse.jar"/>
+            <entry path="C:\Users\Lenovo\Desktop\Sublime Text\Workspace\jdk8u212\jre\lib\jce.jar"/>
+            <entry path="C:\Users\Lenovo\Desktop\Sublime Text\Workspace\jdk8u212\jre\lib\charsets.jar"/>
+            <entry path="C:\Users\Lenovo\Desktop\Sublime Text\Workspace\jdk8u212\jre\lib\jfr.jar"/>
+            <entry path="C:\Users\Lenovo\Desktop\Sublime Text\Workspace\jdk8u212\jre\classes"/>
+        </bootpath>
+        <extensionDirs>
+            <entry path="C:\Users\Lenovo\Desktop\Sublime Text\Workspace\jdk8u212\jre\lib\ext"/>
+            <entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+        </extensionDirs>
+        <endorsedDirs>
+            <entry path="C:\Users\Lenovo\Desktop\Sublime Text\Workspace\jdk8u212\jre\lib\endorsed"/>
+        </endorsedDirs>
+    </libraryInfo>
+    <libraryInfo home="C:\Program Files\Java\jdk-12.0.1" version="12.0.1"/>
+    <libraryInfo home="F:\Java JDK\New Version\jdk-12.0.1" version="12.0.1"/>
+    <libraryInfo home="F:\Java JDK\Old Version\JDK-8" version="1.8.0_212">
+        <bootpath>
+            <entry path="F:\Java JDK\Old Version\JDK-8\jre\lib\resources.jar"/>
+            <entry path="F:\Java JDK\Old Version\JDK-8\jre\lib\rt.jar"/>
+            <entry path="F:\Java JDK\Old Version\JDK-8\jre\lib\sunrsasign.jar"/>
+            <entry path="F:\Java JDK\Old Version\JDK-8\jre\lib\jsse.jar"/>
+            <entry path="F:\Java JDK\Old Version\JDK-8\jre\lib\jce.jar"/>
+            <entry path="F:\Java JDK\Old Version\JDK-8\jre\lib\charsets.jar"/>
+            <entry path="F:\Java JDK\Old Version\JDK-8\jre\lib\jfr.jar"/>
+            <entry path="F:\Java JDK\Old Version\JDK-8\jre\classes"/>
+        </bootpath>
+        <extensionDirs>
+            <entry path="F:\Java JDK\Old Version\JDK-8\jre\lib\ext"/>
+            <entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+        </extensionDirs>
+        <endorsedDirs>
+            <entry path="F:\Java JDK\Old Version\JDK-8\jre\lib\endorsed"/>
+        </endorsedDirs>
+    </libraryInfo>
+</libraryInfos>

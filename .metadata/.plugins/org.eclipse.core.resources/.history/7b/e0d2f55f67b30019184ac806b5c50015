@@ -1,0 +1,14 @@
+import java.util.Scanner;
+
+public class DemoBasic {
+
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		Integer i = new Integer(5);
+		System.out.println(i);
+		System.out.println("enter n");
+		int n = sc.nextInt();
+		System.out.println("n = "+n);
+	}
+}

@@ -1,0 +1,61 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class AddServlet extends HttpServlet implements Runnable
+{
+
+	/* we use doPost , doGet
+	 * in that case access is granted when it matches the request
+	 * so in case of password we use post request ie doPost method
+	 * it will only work with post method for security purpose maybe
+	*/ 
+	Thread th = null;
+	public void doGet(HttpServletRequest req,HttpServletResponse res)
+	{
+		
+		
+		int i = Integer.parseInt(req.getParameter("num1"));
+		int j = Integer.parseInt(req.getParameter("num2"));
+		
+		int k = i+j;
+		//System.out.println(k);
+	
+		
+		// calling one servlet in another servlet 
+		PrintWriter out = null;
+		try {
+			out = res.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		out.println("Result is "+k);
+		
+		th.sleep(2000);
+		// Request Dispatcher and Redirect
+		
+		RequestDispatcher rd = req.getRequestDispatcher("sq");
+		
+		try {
+			rd.forward(req, res);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		th.start();
+	}
+	
+}

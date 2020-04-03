@@ -1,0 +1,14 @@
+import java.awt.Dimension;
+
+import javax.swing.*;
+
+public class ManagerHome extends JPanel {
+	JLabel lbname;
+	String manager;
+	public ManagerHome() {
+	
+		manager = ManagerTabbedBar.manager;
+		lbname = new JLabel("Welcome Manager, "+manager);
+		add(lbname);
+	}
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;image.jpg&apos; to &apos;Chess/src/(default package)&apos;&#x0D;&#x0A;- Original project: &apos;Swings&apos;&#x0D;&#x0A;- Destination element: &apos;Chess/src/(default package)&apos;&#x0D;&#x0A;- Original element: &apos;image.jpg&apos;" description="Copy file" destination="=Chess/src&lt;" element1="src/image.jpg" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1580843930486" units="0" version="1.0"/>
+</session>

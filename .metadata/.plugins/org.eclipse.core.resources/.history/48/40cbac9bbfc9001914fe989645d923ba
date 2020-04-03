@@ -1,0 +1,48 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class AddServlet extends HttpServlet
+{
+
+	/* we use doPost , doGet
+	 * in that case access is granted when it matches the request
+	 * so in case of password we use post request ie doPost method
+	 * it will only work with post method for security purpose maybe
+	*/ 
+	public void doGet(HttpServletRequest req,HttpServletResponse res)
+	{
+		
+		
+		int i = Integer.parseInt(req.getParameter("num1"));
+		int j = Integer.parseInt(req.getParameter("num2"));
+		
+		int k = i+j;
+		//System.out.println(k);
+	
+		
+		// calling one servlet in another servlet 
+		
+		// Session Management 
+		req.setAttribute("k", k);
+		
+		// Request Dispatcher and Redirect
+		
+		RequestDispatcher rd = req.getRequestDispatcher("sq");
+		
+		try {
+			rd.forward(req, res);
+		} catch (ServletException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+}

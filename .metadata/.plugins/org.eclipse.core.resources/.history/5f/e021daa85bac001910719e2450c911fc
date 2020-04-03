@@ -1,0 +1,19 @@
+import java.awt.Dimension;
+
+import javax.swing.*;
+
+public class UserHome extends JPanel {
+	JLabel lbname;
+	String user;
+
+	public UserHome() {
+		
+		user = LoginUser.user;
+		setPreferredSize(new Dimension(1000, 1000));
+		setSize(new Dimension(1000, 1000));
+		setVisible(true);
+		
+		lbname = new JLabel("Welcome user "+user);
+		add(lbname);
+	}
+}

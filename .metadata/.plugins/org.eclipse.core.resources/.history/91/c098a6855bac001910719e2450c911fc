@@ -1,0 +1,16 @@
+import java.awt.Dimension;
+
+import javax.swing.JFrame;
+
+public class UserTabbedBar extends JFrame {
+
+	String user;
+
+	public UserTabbedBar() {
+		
+		user = LoginUser.user;
+		setPreferredSize(new Dimension(1000, 1000));
+		setSize(new Dimension(1000, 1000));
+		setVisible(true);
+	}
+}

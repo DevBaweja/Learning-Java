@@ -1,0 +1,28 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class SquareServlet extends HttpServlet {
+
+	@Override
+	public void doGet(HttpServletRequest req, HttpServletResponse res) {
+		{
+		// TODO Auto-generated method stub
+		
+		int k = (int)req.getAttribute("k");
+		
+		PrintWriter out = null;
+		try {
+			out = res.getWriter();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		k = k*k;
+			out.println("Result is "+k);
+	}
+}
+}

@@ -1,0 +1,50 @@
+package Interface;
+
+
+public class Main 
+{
+    public static void main (String[] args) 
+    {
+        
+        // you cannot instance interface
+        // A obj = new A();
+        
+        // here new thing is that functions defined 
+        B objb = new B();
+        objb.show();
+        objb.display();
+        // both methods are of class B
+        
+        A obja = new B();
+        obja.show(); // is valid and useful 
+        // obja.display(); // is invalid
+       
+        // as interface ref can only access declared method of interface which are defined in derived class
+    }
+}
+
+interface A {
+    public void show();
+}
+// interface can only be implements by class or abstract class as it requires to declare methods in class 
+// interface cannot be implements by interface as it will not be able to declared method in it
+
+class B implements A {
+    
+    public void show()
+    {
+        System.out.println("Show");
+    }
+    
+    public void display()
+    {
+        System.out.println("Display");
+    }
+}
+
+// Even though both abstract class as well as interface cannot be instantiated  
+// But Abstract Class can have constructor and Interface cannot have constructor
+// Abstract class variable can be non-static also and its constructor can be called by Derived constructor
+// But Interface dont have instance fields(variable)
+
+

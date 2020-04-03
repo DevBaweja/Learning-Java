@@ -1,0 +1,99 @@
+package ItemListener;
+
+import java.applet.Applet;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.awt.Label;
+import java.awt.List;
+import java.awt.Panel;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class DemoTwoList extends Applet implements ActionListener{
+
+	Label lbshop,lbitems;
+	List l1;
+	Panel P1,P2,P3;
+	Button b1,b2,b3;
+	TextField t;
+	
+	public void init()
+	{
+		
+		lbitems = new Label("Shopping List");
+		lbshop = new Label("Items");
+		t = new TextField();
+		
+		l1 = new List();
+
+		l1.add("Butter");
+		l1.add("Honey");
+		l1.add("Milk");
+		l1.add("Water");
+		
+		b1 = new Button("ADD");
+		b2 = new Button("REMOVE");
+		b3 = new Button("REMOVE SELECTED ITEM");
+		b1.setPreferredSize(new Dimension(80,40));
+		
+		P1 = new Panel();
+		P2 = new Panel();
+		P3 = new Panel();
+				
+		print();
+		
+		b1.addActionListener(this);
+		b2.addActionListener(this);
+		b3.addActionListener(this);
+		 
+	}
+
+	public void print()
+	{
+		P1.setLayout(new GridLayout(2,1));
+		P1.add(lbitems);
+		P1.add(l1);
+		
+		P2.setLayout(new GridLayout(2,2));
+		P2.add(lbshop);
+		P2.add(t);
+		P2.add(b1);
+		P2.add(b2);
+
+		
+		P3.setLayout(new GridLayout(2,1));
+		P3.add(P2);
+		P3.add(b3);
+		
+		setLayout(new BorderLayout());
+		add(P1,BorderLayout.WEST);
+		add(P3,BorderLayout.CENTER);
+		
+	}
+
+	
+	public void actionPerformed(ActionEvent e) {
+		
+		Object src = e.getSource();
+		
+		if(src == b1)
+		{//Add
+			
+		}
+		else if(src == b2)
+		{//Remove
+			
+		}
+		else if(src == b3)
+		{//Selected Remove
+			
+		}
+		
+		
+	}
+	
+	
+}

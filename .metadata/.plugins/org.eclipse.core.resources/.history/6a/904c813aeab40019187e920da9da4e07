@@ -1,0 +1,30 @@
+package String;
+
+public class Constructors {
+
+	public static void main(String[] args) {
+		// s is String Class Object
+		String s = new String();
+		// Default Constructor
+		System.out.println(s);
+		
+		s = new String("Fill");
+		// Parametric Constructor
+		System.out.println(s);
+		
+		s = new String(s);
+		// Copy Constructor
+		System.out.println(s);
+		
+		char c[] = {'a','b','c','d','e','f'};
+		// String(char[] value)
+		s = new String(c);
+		System.out.println(s);
+		
+		// String(char[] value,int offset,int count)
+		s = new String(c,1,3);
+		System.out.println(s);
+		
+		
+	}
+}

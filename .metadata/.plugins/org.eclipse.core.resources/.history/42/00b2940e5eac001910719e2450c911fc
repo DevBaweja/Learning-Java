@@ -1,0 +1,44 @@
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
+public class UserTabbedBar extends JFrame implements ActionListener {
+
+	static String user;
+	JTabbedPane jtb;
+	JPanel log;
+	JButton logout;
+
+	public UserTabbedBar() {
+
+		user = LoginUser.user;
+		// user = "dev";
+		
+		setPreferredSize(new Dimension(1000, 1000));
+		setSize(new Dimension(1000, 1000));
+		setVisible(true);
+
+		logout = new JButton("Logout");
+		log = new JPanel();
+		log.add(logout);
+		
+		jtb = new JTabbedPane();
+		jtb.addTab("User Home", new UserHome());
+		
+		jtb.addTab("Logout", log);
+		
+		add(jtb);
+		validate();
+		revalidate();
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		this.dispose();
+	}
+}

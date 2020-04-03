@@ -1,0 +1,56 @@
+package ItemListener;
+
+import java.applet.Applet;
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Label;
+import java.awt.List;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class DemoTwoList extends Applet implements ActionListener{
+
+	Label lbshop,lbitems;
+	List l1;
+	Panel P1,P2,P3;
+	Button b1,b2,b3;
+	
+	public void init()
+	{
+		
+		setLayout(new BorderLayout());
+		
+		l1 = new List();
+
+		l1.add("Butter");
+		l1.add("Honey");
+		l1.add("Milk");
+		l1.add("Water");
+		
+		b1 = new Button("ADD");
+		b2 = new Button("REMOVE");
+		b3 = new Button("REMOVE SELECTED ITEM");
+				
+		print();
+		
+		b1.addActionListener(this);
+		b2.addActionListener(this);
+		b3.addActionListener(this);
+		 
+	}
+
+	public void print()
+	{
+		
+	}
+
+	
+	public void actionPerformed(ActionEvent e) {
+		
+		Object src = e.getSource();
+		
+	}
+	
+	
+}
