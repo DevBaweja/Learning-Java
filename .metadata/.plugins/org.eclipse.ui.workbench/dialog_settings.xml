@@ -4,15 +4,20 @@
 		<item key="dialogHeight" value="934"/>
 		<item key="dialogWidth" value="668"/>
 		<list key="orderedElements">
+			<item value="org.eclipse.wst.server.ui.ServersView"/>
 			<item value="org.eclipse.ui.preferencePages.Views"/>
 		</list>
 		<list key="orderedProviders">
+			<item value="org.eclipse.e4.ui.parts"/>
 			<item value="org.eclipse.ui.preferences"/>
 		</list>
 		<list key="textEntries">
+			<item value="2"/>
 			<item value="1"/>
 		</list>
 		<list key="textArray">
+			<item value="se"/>
+			<item value="server"/>
 			<item value="dar"/>
 		</list>
 	</section>
